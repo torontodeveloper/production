@@ -4,6 +4,8 @@ from sklearn.linear_model import LogisticRegression
 import mlflow
 import mlflow.sklearn
 from mlflow.models import infer_signature
+import sys, os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from utils.logger import get_logger
 
@@ -34,3 +36,7 @@ if __name__ == "__main__":
             _logs.info(f"Model saved in run {mlflow.active_run().info.run_uuid}")
         except Exception as e:
             _logs.error(f"Error during ML flow test: {e}")
+            
+    mlflow.register_model(
+    model_uri="runs:/" + mlflow.active_run().info.run_id + "/model",
+    name="mlflow_test_experiment")
