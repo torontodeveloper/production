@@ -5,3 +5,8 @@
 *.parquet
 *.log
 **/__pycache__/*
+*.yaml
+*.pkl
+mlflow**
+MLmodel
+*mlruns**
